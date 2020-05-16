@@ -1,0 +1,54 @@
+<div *ngIf="product" class="componenet">
+    <section class="heading">
+        <span class="page-title font-weight-bold font-italic">{{title}}</span>
+        <span> | <a routerLink="/product/list">Return to List</a></span>
+
+    </section>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Vendor: 
+                <td>
+                    <select [(ngModel)]="product.vendor" class="rounded" [compareWith]="compVendor">
+                        <option *ngFor='let vendor of vendors' [ngValue]='vendor'>{{vendor.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Part Number:</td>
+                <td><input [(ngModel)]="product.partNumber" class="rounded" type="text" ></td>
+            </tr>
+            <tr>
+                <td>Product Name:</td>
+                <td><input [(ngModel)]="product.name" class="rounded" type="text" ></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input [(ngModel)]="product.price" class="rounded" type="text" ></td>
+            </tr>
+            <tr>
+                <td>Unit:</td>
+                <td><input [(ngModel)]="product.unit" class="rounded" type="text" ></td>
+            </tr>
+            <tr>
+                <td>Photo Path:</td>
+                <td><input [(ngModel)]="product.photoPath" class="rounded" type="text" ></td>
+            </tr>
+     
+
+
+        </table>
+
+    
+
+    </main>
+    <span>
+        <button (click)="create()" class="btn btn-sm btn-primary">Save</button>
+
+    </span>
+
+
+
+
+    </div>
