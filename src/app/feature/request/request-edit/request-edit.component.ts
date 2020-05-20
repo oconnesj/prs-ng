@@ -25,7 +25,6 @@ export class RequestEditComponent implements OnInit {
     // get the id from the route
     this.route.params.subscribe(parms => this.requestId = parms['id']);
 
-    //get the request for that request
     this.requestSvc.get(this.requestId).subscribe(jr => {
       this.request = jr.data as Request;
       console.log("Request Found!", this.request);

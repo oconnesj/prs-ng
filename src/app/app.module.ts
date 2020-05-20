@@ -26,6 +26,10 @@ import { RequestCreateComponent } from './feature/request/request-create/request
 import { HomeComponent } from './core/home/home.component';
 import { WelcomeComponent } from './feature/welcome/welcome.component';
 
+import { LineItemCreateComponent } from './feature/line-item/line-item-create/line-item-create.component';
+import { LineItemEditComponent } from './feature/line-item/line-item-edit/line-item-edit.component';
+import { RequestLinesComponent } from './feature/request/request-lines/request-lines.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +53,9 @@ import { WelcomeComponent } from './feature/welcome/welcome.component';
     UserLoginComponent,
     HomeComponent,
     WelcomeComponent,
+    LineItemCreateComponent,
+    LineItemEditComponent,
+    RequestLinesComponent,
   ],
   imports: [
     BrowserModule,
