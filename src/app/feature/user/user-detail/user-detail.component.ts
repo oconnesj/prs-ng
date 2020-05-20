@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user.class';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,15 +13,15 @@ export class UserDetailComponent implements OnInit {
   user: User = new User();
   title: string = 'User-Detail';
   userId: number = 0;
- 
 
   constructor(private userSvc: UserService,
- 
-    
+    private sysSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.sysSvc.checkLogin();
+    this.user = this.sysSvc.loggedInUser;
     // get the id from the route
     this.route.params.subscribe(parms => this.userId = parms['id']);
 

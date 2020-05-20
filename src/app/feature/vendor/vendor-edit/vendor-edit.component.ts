@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Vendor } from 'src/app/model/vendor.class';
 import { VendorService } from 'src/app/service/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/model/user.class';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -12,15 +14,16 @@ export class VendorEditComponent implements OnInit {
   vendor: Vendor = new Vendor();
   title: string = 'Vendor-Detail';
   vendorId: number = 0;
- 
+  user: User = null;
 
   constructor(private vendorSvc: VendorService,
-  
-    
+    private sysSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.sysSvc.checkLogin();
+    this.user = this.sysSvc.loggedInUser;
     // get the id from the route
     this.route.params.subscribe(parms => this.vendorId = parms['id']);
 

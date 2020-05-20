@@ -4,6 +4,8 @@ import { RequestService } from 'src/app/service/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LineItem } from 'src/app/model/line-item.class';
 import { LineItemService } from 'src/app/service/line-item.service';
+import { User } from 'src/app/model/user.class';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-request-lines',
@@ -18,14 +20,19 @@ export class RequestLinesComponent implements OnInit {
   requestId: number = 0;
   lineItemId: number = 0;
   lineItems: LineItem[] = [];
-
+  user: User = null;
 
   constructor(private requestSvc: RequestService,
               private lineItemSvc: LineItemService, 
               private router: Router, 
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private sysSvc: SystemService
+              ) { }
 
   ngOnInit(): void {
+    this.sysSvc.checkLogin();
+    this.user = this.sysSvc.loggedInUser;
+    
     this.route.params.subscribe(parms => this.requestId = parms['id']);
     this.requestSvc.get(this.requestId).subscribe(jr => {
       this.request = jr.data as Request;

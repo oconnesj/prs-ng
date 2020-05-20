@@ -4,6 +4,8 @@ import { LineItemService } from 'src/app/service/line-item.service';
 import { ProductService } from 'src/app/service/product.service';
 import { Product } from 'src/app/model/product.class';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SystemService } from 'src/app/service/system.service';
+import { User } from 'src/app/model/user.class';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class LineItemEditComponent implements OnInit {
   title: string = "Line-Item-Edit";
   submitBtnTitle: string = "Change";
   products: Product[] = [];
-
+  user: User = null;
   lineItem: LineItem = new LineItem();
   lineItemId: number = 0;
 
@@ -25,9 +27,12 @@ export class LineItemEditComponent implements OnInit {
     private route: ActivatedRoute,
     private lineItemSvc: LineItemService, 
     private productSvc: ProductService,
+    private sysSvc: SystemService,
     ) { }
   
   ngOnInit(): void {
+    this.sysSvc.checkLogin();
+    this.user = this.sysSvc.loggedInUser;
     this.route.params.subscribe(parms => this.lineItemId = parms["id"]);
     this.lineItemSvc.get(this.lineItemId).subscribe(jr => {
       this.lineItem = jr.data as LineItem;

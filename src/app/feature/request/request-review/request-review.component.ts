@@ -12,7 +12,7 @@ export class RequestReviewComponent implements OnInit {
   title: string = "Request-Review";
   requests: Request[] = [];
   user: User = null;
-
+  
   constructor(private requestSvc: RequestService,
      private sysSvc: SystemService) { }
 
