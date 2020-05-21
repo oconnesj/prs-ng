@@ -16,7 +16,7 @@ export class RequestLinesComponent implements OnInit {
   request: Request = new Request();
   title: string = 'Purchase Request Line Items';
   titleLineItems: string = 'Line Items';
-  submitBtnTitle: string = "Submit";
+  submitBtnTitle: string = "Submit For Review";
   requestId: number = 0;
   lineItemId: number = 0;
   lineItems: LineItem[] = [];

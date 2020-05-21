@@ -39,7 +39,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody *ngIf="lineItems" class="table table-sm table-striped">
+    <tbody class="table table-sm table-striped">
         <tr *ngFor="let lineItem of lineItems">
             <td>{{ lineItem.id }}</td>
             <td>{{ lineItem.product.name }}</td>
@@ -57,9 +57,12 @@
             </td>
         </tr>
     </tbody>
-   
+
 </table>
-<div>
-<span *ngIf="!lineItems" class="nolines">No line items yet.  Please create a new one!</span>
-<span *ngIf="lineItems"><button (click)="submitForReview()" class="btn btn-sm btn-primary">Submit For Review</button></span>
-</div>
+<span *ngIf="!lineItems || lineItems.length == 0" class="nolines">No line items yet. Please create a new one!</span>
+
+<span *ngIf="lineItems && lineItems.length > 0">
+    <button (click)="submitForReview()" class="btn btn-sm btn-primary">{{submitBtnTitle}}
+
+    </button>
+</span>
